@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: rgb(87, 108, 119);
+}
+
+main {
+  width: 700px;
+  margin-inline: auto;
+}
+
+.header-text {
+  font-style: italic;
+  font-size: 32px;
+  font-weight: 200;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.add-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.small-text {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.input {
+  height: 42px;
+  border: none;
+  background-color: white;
+  padding-inline: 15px;
+  border-radius: 5px;
+}
+
+#btn-add {
+  align-self: flex-end;
+}
+
+#input-description {
+  width: 270px;
+}
+
+.button {
+  height: 42px;
+  border: none;
+  border-radius: 5px;
+  width: 130px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.green {
+  background-color: rgb(67, 138, 87);
+}
+
+#total-sum {
+  text-align: right;
+}
