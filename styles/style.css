@@ -30,6 +30,12 @@ main {
   margin-bottom: 8px;
 }
 
+.regular-text {
+  font-size: 24px;
+  margin-bottom: 8px;
+  font-weight: 100;
+}
+
 .input {
   height: 42px;
   border: none;
@@ -61,4 +67,20 @@ main {
 
 #total-sum {
   text-align: right;
+  margin-bottom: 30px;
+}
+
+.items__expense-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.expense-container__date-and-sum-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.images-container__image {
+  cursor: pointer;
 }
