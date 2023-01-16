@@ -14,7 +14,6 @@ const getAllExpenses = async () => {
 
     return await response.json();
   } catch (error) {
-    console.log(error);
     return [];
   }
 }
@@ -25,7 +24,6 @@ const calcTotalSum = (expenses) => {
       return prev + curr.sum;
     }, 0);
   } catch (error) {
-    console.log(error);
     return -1;
   }
 }
