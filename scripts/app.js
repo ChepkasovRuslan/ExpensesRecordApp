@@ -36,4 +36,58 @@ const render = async () => {
 
   const totalSum = document.getElementById('total-sum');
   totalSum.innerHTML = `Итого: ${await calcTotalSum()} р.`;
+
+  const content = document.getElementById('expenses-items');
+  content.innerHTML = '';
+
+  expenses.forEach((item, index) => {
+    const expenseContainer = document.createElement('div');
+    expenseContainer.id = `expense-${index}`;
+    expenseContainer.className = 'items__expense-container';
+
+    const description = document.createElement('p');
+    description.innerText = `${index + 1}) ${item.description}`;
+    description.id = `description-${index}`;
+    description.className = 'regular-text';
+    description.style.width = '300px'
+
+    const dateAndSumContainer = document.createElement('div');
+    dateAndSumContainer.className = 'expense-container__date-and-sum-container';
+    dateAndSumContainer.style.width = '230px';
+
+    const date = document.createElement('p');
+    date.innerText = item.date.split(', ')[0];
+    date.id = `date-${index}`;
+    date.className = 'regular-text';
+
+    const sum = document.createElement('p');
+    sum.innerText = `${item.sum} р.`;
+    sum.id = `sum-${index}`;
+    sum.className = 'regular-text'
+
+    dateAndSumContainer.appendChild(date);
+    dateAndSumContainer.appendChild(sum);
+
+    const imagesContainer = document.createElement('div');
+    imagesContainer.className = 'expense-container__images-container';
+
+    const imageEdit = document.createElement('img');
+    imageEdit.id = `image-edit-${index}`;
+    imageEdit.src = 'images/edit.svg';
+    imageEdit.className = 'images-container__image';
+
+    const imageDelete = document.createElement('img');
+    imageDelete.id = `image-delete-${index}`;
+    imageDelete.src = 'images/delete.svg';
+    imageDelete.className = 'images-container__image';
+
+    imagesContainer.appendChild(imageEdit);
+    imagesContainer.appendChild(imageDelete);
+
+    expenseContainer.appendChild(description);
+    expenseContainer.appendChild(dateAndSumContainer);
+    expenseContainer.appendChild(imagesContainer);
+
+    content.appendChild(expenseContainer);
+  });
 }
