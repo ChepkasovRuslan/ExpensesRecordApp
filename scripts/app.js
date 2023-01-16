@@ -13,24 +13,25 @@ window.onload = async () => {
 }
 
 const addItem = async () => {
-  if (descriptionInput.value) {
-    try {
-      await fetch(URL + '/expenses', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify({
-          description: descriptionInput.value,
-          sum: sumInput.value ? sumInput.value : 0
-        })
-      });
-      clearInputs();
-      await render();
-    } catch (error) { }
-  } else {
-    emptyDescriptionAlert();
-  }
+  try {
+    if (!descriptionInput.value) {
+      emptyDescriptionAlert();
+      return;
+    }
+
+    await fetch(URL + '/expenses', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      body: JSON.stringify({
+        description: descriptionInput.value,
+        sum: sumInput.value ? sumInput.value : 0
+      })
+    });
+    clearInputs();
+    await render();
+  } catch (error) { }
 }
 
 const emptyDescriptionAlert = () => {
