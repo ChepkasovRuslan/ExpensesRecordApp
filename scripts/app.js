@@ -1,9 +1,46 @@
 const URL = 'http://localhost:8000';
 
+let descriptionInput = null;
+let sumInput = null;
+
 let expenses = [];
 
 window.onload = async () => {
+  descriptionInput = document.getElementById('input-description');
+  sumInput = document.getElementById('input-sum');
+
   await render();
+}
+
+const addItem = async () => {
+  try {
+    if (!descriptionInput.value) {
+      emptyDescriptionAlert();
+      return;
+    }
+
+    await fetch(URL + '/expenses', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      body: JSON.stringify({
+        description: descriptionInput.value,
+        sum: sumInput.value ? sumInput.value : 0
+      })
+    });
+    clearInputs();
+    await render();
+  } catch (error) { }
+}
+
+const emptyDescriptionAlert = () => {
+  alert('Укажите расход');
+}
+
+const clearInputs = () => {
+  descriptionInput.value = '';
+  sumInput.value = '';
 }
 
 const getAllExpenses = async () => {
