@@ -65,6 +65,10 @@ main {
   background-color: rgb(67, 138, 87);
 }
 
+.red {
+  background-color: rgb(131, 62, 62);
+}
+
 #total-sum {
   text-align: right;
   margin-bottom: 30px;
@@ -83,4 +87,45 @@ main {
 
 .images-container__image {
   cursor: pointer;
+}
+
+.modal {
+  display: none;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal h1 {
+  color: white;
+}
+
+.modal__edit-expense-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  background-color: rgb(87, 108, 119);
+  width: 440px;
+  height: 100px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.edit-expense-container__edit-expense-input {
+  margin-bottom: 10px;
+}
+
+.edit-expense-container__options-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-expense-container__inputs {
+  display: flex;
+  justify-content: space-between;
 }
