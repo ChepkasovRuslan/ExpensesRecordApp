@@ -3,11 +3,20 @@ const URL = 'http://localhost:8000';
 let descriptionInput = null;
 let sumInput = null;
 
+let modal = null;
+let descriptionEditInput = null;
+let sumEditInput = null;
+let activeEditIndex = -1;
+
 let expenses = [];
 
 window.onload = async () => {
   descriptionInput = document.getElementById('input-description');
   sumInput = document.getElementById('input-sum');
+
+  modal = document.getElementById('modal');
+  descriptionEditInput = document.getElementById('edit-epxense-description-input');
+  sumEditInput = document.getElementById('edit-epxense-sum-input');
 
   await render();
 }
@@ -31,6 +40,28 @@ const addItem = async () => {
     });
     clearInputs();
     await render();
+  } catch (error) { }
+}
+
+const editItem = async () => {
+  try {
+    if (!descriptionEditInput.value) {
+      emptyDescriptionAlert();
+      return;
+    }
+
+    await fetch(URL + '/expenses/' + expenses[activeEditIndex]._id, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      body: JSON.stringify({
+        description: descriptionEditInput.value,
+        sum: sumEditInput.value ? sumEditInput.value : 0
+      })
+    });
+    await render();
+    hideModal();
   } catch (error) { }
 }
 
@@ -67,6 +98,10 @@ const calcTotalSum = async () => {
     return undefined;
   }
 }
+
+const showModal = () => modal.style.display = 'initial';
+
+const hideModal = () => modal.style.display = 'none';
 
 const render = async () => {
   expenses = await getAllExpenses();
@@ -112,6 +147,12 @@ const render = async () => {
     imageEdit.id = `image-edit-${index}`;
     imageEdit.src = 'images/edit.svg';
     imageEdit.className = 'images-container__image';
+    imageEdit.onclick = () => {
+      activeEditIndex = index;
+      descriptionEditInput.value = expenses[index].description;
+      sumEditInput.value = expenses[index].sum;
+      showModal();
+    }
 
     const imageDelete = document.createElement('img');
     imageDelete.id = `image-delete-${index}`;
