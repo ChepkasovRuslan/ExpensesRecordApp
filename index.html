@@ -11,6 +11,27 @@
 
 <body>
   <main>
+    <div id="modal" class="modal">
+      <div class="modal__edit-expense-container">
+        <div class="edit-expense-container__inputs">
+          <div class="inputs__description">
+            <p class="small-text">Куда было потрачено</p>
+            <input type="text" id="edit-epxense-description-input"
+              class="edit-expense-container__edit-expense-input input" placeholder="Куда было потрачено">
+          </div>
+          <div class="inputs__sum">
+            <p class="small-text">Сколько было потрачено</p>
+            <input type="number" id="edit-epxense-sum-input" class="edit-expense-container__edit-expense-input input"
+              placeholder="Сколько было потрачено" min="0">
+          </div>
+        </div>
+        <div class="edit-expense-container__options-buttons">
+          <button id="apply-edit-button" class="button green" onclick="editItem()">Ок</button>
+          <button id="cancel-edit-button" class="button red" onclick="hideModal()">Отмена</button>
+        </div>
+      </div>
+    </div>
+
     <h1 class="header-text">Учет моих расходов</h1>
     <div class="add-item">
       <div class="add-item__desc">
