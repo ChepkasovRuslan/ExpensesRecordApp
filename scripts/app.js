@@ -158,6 +158,14 @@ const render = async () => {
     imageDelete.id = `image-delete-${index}`;
     imageDelete.src = 'images/delete.svg';
     imageDelete.className = 'images-container__image';
+    imageDelete.onclick = async () => {
+      try {
+        await fetch(URL + '/expenses/' + expenses[index]._id, {
+          method: 'DELETE'
+        });
+        await render();
+      } catch (error) { }
+    }
 
     imagesContainer.appendChild(imageEdit);
     imagesContainer.appendChild(imageDelete);
